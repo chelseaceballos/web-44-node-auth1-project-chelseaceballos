@@ -24,6 +24,7 @@
     "connect-session-knex": "^2.1.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.2",
     "express-sessions": "^1.0.6",
     "helmet": "^4.6.0",
     "knex": "^0.95.7",
