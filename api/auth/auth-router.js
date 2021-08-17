@@ -88,7 +88,7 @@ router.get('/logout', (req, res, next) => {
     // destroy session
     req.session.destroy(err => { // this will not get rid of the cookie on the clients side but will on the servers side
       if(err) {
-          res.json({message: "unable to logout sorry"})
+          next(err)
       } else {
           res.json({message: 'logged out'})
       }
