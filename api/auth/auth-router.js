@@ -66,7 +66,8 @@ router.post('/login', checkUsernameExists, async (req, res, next) => {
   } else {
     next({status: 401, message: 'invalid credentials'})
   }
-})
+});
+
 /**
   3 [GET] /api/auth/logout
 
@@ -83,7 +84,19 @@ router.post('/login', checkUsernameExists, async (req, res, next) => {
   }
  */
 router.get('/logout', (req, res, next) => {
-  res.json("logout")
+  if (req.session.user) {
+    // destroy session
+    req.session.destroy(err => { // this will not get rid of the cookie on the clients side but will on the servers side
+      if(err) {
+          res.json({message: "unable to logout sorry"})
+      } else {
+          res.json({message: 'logged out'})
+      }
+  })
+  } else {
+    res.json({message: "no session"})
+  }
+  
 })
  
 // Don't forget to add the router to the `exports` object so it can be required in other modules
